@@ -12,6 +12,10 @@ parser.output
 # === Ejecutable ===
 parser
 
+# === macOS: bundles de simbolos de depuracion (compilacion con -g) ===
+*.dSYM/
+parser.dSYM/
+
 # === Objetos y temporales de C ===
 *.o
 *.obj
