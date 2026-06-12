@@ -38,21 +38,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "y.tab.h"        /* codigos de token y union YYSTYPE generados por yacc */
+#include "y.tab.h"        /* tokens y union YYSTYPE generados por yacc (bison -y) */
 
-extern int lexical_errors; /* contador de errores lexicos (definido en parser.y) */
+/* Contador de errores lexicos; su definicion real esta en parser.y. */
+extern int lexical_errors;
+
+/*
+ * Definiciones regulares 
+ *   LETTER, DIGIT   clases de caracteres base
+ *   ID              identificadores validos
+ *   INTEGER, REAL   numeros sin signo (el signo es operador PLUS/MINUS)
+ *   STRING_LIT      literal de cadena entre comillas
+ *   BLANK           espacios, tabuladores y saltos de linea
+ *   COMMENT         comentario estilo C en una sola expresion regular
+ *   INVALID_*       patrones para detectar errores lexicos
+ */
 %}
 
-/*--- Definiciones regulares -----------------------------------------------*/
 LETTER      [A-Za-z]
 DIGIT       [0-9]
 ID          ({LETTER}({LETTER}|{DIGIT}|_)*|_({LETTER}|{DIGIT})({LETTER}|{DIGIT}|_)*)
 INTEGER     {DIGIT}+
 REAL        {DIGIT}+\.{DIGIT}+
 STRING_LIT  \"[^\n\"]*\"
+BLANK       [ \t\r\n]
 COMMENT     \/\*([^*]|\*+[^*/])*\*+\/
 
-/*--- Patrones de errores lexicos -------------------------------------------*/
 INVALID_ID_DIGIT       {DIGIT}+({LETTER}|_)({LETTER}|{DIGIT}|_)*
 INVALID_REAL_TWO_DOTS  {DIGIT}+\.{DIGIT}+\.({DIGIT}|{LETTER}|_)*
 INVALID_REAL_END_DOT   {DIGIT}+\.
@@ -76,7 +87,7 @@ INVALID_ID_UNDERSCORE  (_|__({LETTER}|{DIGIT}|_)*)
 {INVALID_ID_UNDERSCORE}     { fprintf(stderr, "Lexical error at line %d: invalid identifier '%s'\n", yylineno, yytext); lexical_errors++; }
 \"[^\n\"]*                  { fprintf(stderr, "Lexical error at line %d: unclosed string '%s'\n", yylineno, yytext); lexical_errors++; }
 
- /* Palabras reservadas */
+ /* Palabras reservadas (insensibles a mayusculas/minusculas) */
 [Ii][Nn][Tt]                { return INT;    }
 [Ff][Ll][Oo][Aa][Tt]        { return FLOAT;  }
 [Ss][Tt][Rr][Ii][Nn][Gg]    { return STRING; }

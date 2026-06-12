@@ -1,0 +1,7 @@
+/* Errores sintacticos: falta punto y coma y parentesis */
+int a;
+void main(void){
+    a = 5
+    a = (a + 1;
+    return;
+}

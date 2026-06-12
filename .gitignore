@@ -1,0 +1,26 @@
+# === Archivos generados por flex / yacc (bison) ===
+lex.yy.c
+y.tab.c
+y.tab.h
+y.output
+
+# Nombres alternativos si se compila con 'bison -d' sin modo yacc
+parser.tab.c
+parser.tab.h
+parser.output
+
+# === Ejecutable ===
+parser
+
+# === Objetos y temporales de C ===
+*.o
+*.obj
+*.out
+a.out
+
+# === Sistema operativo / editores ===
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.vscode/

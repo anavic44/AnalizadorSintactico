@@ -1,0 +1,8 @@
+/* Prueba: signo como operador, numeros sin signo, sin espacios */
+int a;
+void main(void){
+    a = 5-3;
+    a = a+1;
+    a = 10*2-4/2;
+    return;
+}

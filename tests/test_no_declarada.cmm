@@ -1,0 +1,7 @@
+/* Error semantico: 'z' nunca fue declarada */
+int a;
+void main(void){
+    a = 1;
+    z = a + 2;
+    return;
+}

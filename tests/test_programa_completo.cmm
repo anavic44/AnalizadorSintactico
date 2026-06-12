@@ -1,0 +1,73 @@
+/* Programa de ejemplo de la especificacion: lee 10 enteros, los multiplica
+   por un float, los ordena por seleccion y los imprime. */
+int x[10];
+string s;
+float f1;
+float f2[10];
+
+int miniloc(float a[], int low, int high){
+    int i; float y; int k;
+    k = low;
+    y = a[low];
+    i = low + 1;
+    while (i < high){
+        if (a[i] < x){
+            y = a[i];
+            k = i;
+        }
+        i = i + 1;
+    }
+    return k;
+}
+
+void sort(float a[], int low, int high){
+    int i; int k;
+    i = low;
+    while (i < high - 1){
+        float t;
+        k = miniloc(a,i,high);
+        t = a[k];
+        a[k] = a[i];
+        a[i] = t;
+        i = i + 1;
+    }
+    return;
+}
+
+void readArray(void){
+    int i;
+    s = "Enter a float number: ";
+    write s;
+    read f1;
+    while (i < 10){
+        s = "Enter an integer number: ";
+        write s;
+        read x[i];
+        f2[i] = x[i]*f1;
+        i = i + 1;
+    }
+    return;
+}
+
+void writeArray(void){
+    int i;
+    i = 0;
+    while (i < 10){
+        write f2[i];
+        i = i + 1;
+    }
+    return;
+}
+
+void main(void){
+    s = "Reading Information.....";
+    write s;
+    readArray();
+    s = "Sorting.....";
+    write s;
+    sort(f2,0,10);
+    s = "Sorted Array:";
+    write s;
+    writeArray();
+    return;
+}

@@ -1,0 +1,8 @@
+/* Errores semanticos: redeclaracion de 'a' y variable de tipo void */
+int a;
+int a;
+void b;
+void main(void){
+    a = 1;
+    return;
+}

@@ -1,0 +1,16 @@
+/* Valido: prueba if/else anidado, while y expresiones */
+int a;
+int b;
+
+void main(void){
+    a = 5;
+    b = 10;
+    if (a < b)
+        if (b > 0)
+            a = a + 1;
+        else
+            a = a - 1;
+    while (a <= b)
+        a = a * 2;
+    return;
+}

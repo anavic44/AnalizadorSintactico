@@ -1,0 +1,7 @@
+/* Error lexico: simbolo invalido '@' en una declaracion por lo demas valida.
+   Antes del contador, el parser reportaba EXITO; ahora reporta el error lexico. */
+int a@;
+void main(void){
+    a = 1;
+    return;
+}

@@ -1,0 +1,5 @@
+/* Error semantico: 'helper' se llama antes de declararse */
+void main(void){
+    helper();
+    return;
+}
